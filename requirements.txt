@@ -46,7 +46,6 @@ python-dateutil>=2.8.0
 pytz>=2023.3
 
 # Database
-sqlite3
 sqlalchemy>=2.0.0
 
 # Image Processing
@@ -55,3 +54,7 @@ Pillow>=10.0.0
 # HTTP and API handling
 httpx>=0.25.0
 aiohttp>=3.9.0
+
+# Additional NLP and Analysis
+vaderSentiment>=3.3.2
+wordcloud>=1.9.0
