@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(!gemini -p \"I''m analyzing a Base44 no-code AI platform ecosystem with 59 collected app templates. Each app is a React/Vite structure with @base44/sdk integration. The project aims to: 1) Create an application taxonomy using NLP/topic modeling, 2) Develop a complexity assessment rubric, 3) Analyze community sentiment. Current data shows standard React patterns with Radix UI components. What specific analysis approaches would you recommend for: a) Extracting meaningful app features/complexity from source code, b) Identifying unique patterns that distinguish app categories, c) Novel metrics for no-code app quality assessment? Focus on data mining techniques suitable for this codebase structure.\")",
+      "Bash(gemini:*)",
+      "Bash(pip install:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

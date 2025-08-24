@@ -1,0 +1,26 @@
+{
+  "ecosystem_overview": {
+    "total_applications": 59,
+    "analysis_date": "2025-08-23T14:21:46.806324",
+    "processing_time_seconds": 31.83580780029297,
+    "successful_analyses": 58
+  },
+  "key_metrics": {
+    "average_complexity": 0.605,
+    "typescript_adoption": "98.3%",
+    "average_dependencies": 63,
+    "sdk_integration_level": 0.704
+  },
+  "top_categories": {
+    "social": 14,
+    "crm": 14,
+    "ecommerce": 11,
+    "analytics": 11,
+    "education": 5
+  },
+  "quality_insights": {
+    "high_quality_apps": 9,
+    "fully_integrated_apps": 53,
+    "typescript_apps": 58
+  }
+}
