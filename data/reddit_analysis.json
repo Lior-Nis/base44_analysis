@@ -1,0 +1,41 @@
+{
+  "base44": {
+    "mention_count": 7,
+    "avg_sentiment": 0.25210084033613445,
+    "avg_score": 57.57142857142857,
+    "total_comments": 113,
+    "categories": {
+      "showcase": 3,
+      "comparison": 3,
+      "discussion": 1
+    }
+  },
+  "lovable": {
+    "mention_count": 1,
+    "avg_sentiment": -0.3333333333333333,
+    "avg_score": 23,
+    "total_comments": 7,
+    "categories": {
+      "issue_report": 1
+    }
+  },
+  "bolt": {
+    "mention_count": 4,
+    "avg_sentiment": 0.5882352941176471,
+    "avg_score": 81.5,
+    "total_comments": 100,
+    "categories": {
+      "comparison": 3,
+      "discussion": 1
+    }
+  },
+  "v0": {
+    "mention_count": 4,
+    "avg_sentiment": 0.4411764705882353,
+    "avg_score": 75.25,
+    "total_comments": 88,
+    "categories": {
+      "comparison": 4
+    }
+  }
+}

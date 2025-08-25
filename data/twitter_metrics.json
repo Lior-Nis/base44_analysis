@@ -1,0 +1,118 @@
+{
+  "base44": {
+    "platform": "base44",
+    "total_mentions": 4,
+    "total_engagement": 643,
+    "avg_sentiment": -0.07142857142857142,
+    "avg_likes": 108.75,
+    "avg_retweets": 30.25,
+    "top_tweet": {
+      "id": "tweet_1",
+      "text": "Base44 vs Bolt.new comparison thread \ud83e\uddf5 Both are great but Base44 handles databases better while Bolt is faster for frontend",
+      "author": "@user_1",
+      "created_at": "2025-08-25T15:42:50.285104",
+      "retweet_count": 45,
+      "like_count": 156,
+      "reply_count": 28,
+      "platform_mentioned": [
+        "base44",
+        "bolt"
+      ],
+      "sentiment_score": 0.0,
+      "engagement_rate": 22.900000000000002,
+      "tweet_type": "comparison"
+    }
+  },
+  "lovable": {
+    "platform": "lovable",
+    "total_mentions": 1,
+    "total_engagement": 80,
+    "avg_sentiment": 0.0,
+    "avg_likes": 45,
+    "avg_retweets": 12,
+    "top_tweet": {
+      "id": "tweet_5",
+      "text": "Tried Lovable.dev for a week. Meh. \ud83d\ude10 It works but nothing special compared to other AI coding tools",
+      "author": "@user_5",
+      "created_at": "2025-08-25T15:42:50.586182",
+      "retweet_count": 12,
+      "like_count": 45,
+      "reply_count": 23,
+      "platform_mentioned": [
+        "lovable"
+      ],
+      "sentiment_score": 0.0,
+      "engagement_rate": 8.0,
+      "tweet_type": "comparison"
+    }
+  },
+  "bolt": {
+    "platform": "bolt",
+    "total_mentions": 3,
+    "total_engagement": 802,
+    "avg_sentiment": 0.3333333333333333,
+    "avg_likes": 182,
+    "avg_retweets": 52.333333333333336,
+    "top_tweet": {
+      "id": "tweet_3",
+      "text": "Bolt.new is absolutely incredible for rapid prototyping \ud83d\ude80 Generated a full React app in 2 minutes!",
+      "author": "@user_3",
+      "created_at": "2025-08-25T15:42:50.887041",
+      "retweet_count": 67,
+      "like_count": 234,
+      "reply_count": 43,
+      "platform_mentioned": [
+        "bolt"
+      ],
+      "sentiment_score": 1.0,
+      "engagement_rate": 34.4,
+      "tweet_type": "general"
+    }
+  },
+  "v0": {
+    "platform": "v0",
+    "total_mentions": 1,
+    "total_engagement": 261,
+    "avg_sentiment": 0.9375,
+    "avg_likes": 178,
+    "avg_retweets": 52,
+    "top_tweet": {
+      "id": "tweet_4",
+      "text": "V0 by Vercel continues to impress \ud83d\udcaf The component quality is production-ready out of the box",
+      "author": "@user_4",
+      "created_at": "2025-08-25T15:42:51.188151",
+      "retweet_count": 52,
+      "like_count": 178,
+      "reply_count": 31,
+      "platform_mentioned": [
+        "v0"
+      ],
+      "sentiment_score": 0.9375,
+      "engagement_rate": 26.1,
+      "tweet_type": "general"
+    }
+  },
+  "cursor": {
+    "platform": "cursor",
+    "total_mentions": 1,
+    "total_engagement": 457,
+    "avg_sentiment": 0.8333333333333334,
+    "avg_likes": 312,
+    "avg_retweets": 89,
+    "top_tweet": {
+      "id": "tweet_6",
+      "text": "Cursor is changing how I code \u2728 The AI predictions are scary good. Best coding assistant I've used",
+      "author": "@user_6",
+      "created_at": "2025-08-25T15:42:51.489169",
+      "retweet_count": 89,
+      "like_count": 312,
+      "reply_count": 56,
+      "platform_mentioned": [
+        "cursor"
+      ],
+      "sentiment_score": 0.8333333333333334,
+      "engagement_rate": 45.7,
+      "tweet_type": "question"
+    }
+  }
+}

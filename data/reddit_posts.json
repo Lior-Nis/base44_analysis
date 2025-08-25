@@ -1,0 +1,178 @@
+[
+  {
+    "id": "post_0",
+    "title": "Built my first SaaS with Base44 - surprisingly powerful!",
+    "body": "After trying several no-code tools, Base44 stands out. The AI generation is really smart and the database integration just works. Took me 2 hours to build what would have been weeks in React.",
+    "author": "user_0",
+    "subreddit": "nocode",
+    "score": 45,
+    "upvote_ratio": 0.895,
+    "num_comments": 12,
+    "created_utc": 1756125762.8820765,
+    "url": "https://reddit.com/r/nocode/post_0",
+    "platform_mentioned": [
+      "base44"
+    ],
+    "sentiment_score": 0.0,
+    "category": "showcase"
+  },
+  {
+    "id": "post_1",
+    "title": "Base44 vs other no-code platforms - my experience",
+    "body": "Tried Base44, Bolt.new, and V0. Base44 has the best database handling but Bolt is faster for simple apps. V0 feels more polished but less flexible.",
+    "author": "user_1",
+    "subreddit": "nocode",
+    "score": 78,
+    "upvote_ratio": 0.9279999999999999,
+    "num_comments": 23,
+    "created_utc": 1756039362.8824427,
+    "url": "https://reddit.com/r/nocode/post_1",
+    "platform_mentioned": [
+      "base44",
+      "bolt",
+      "v0"
+    ],
+    "sentiment_score": 0.5882352941176471,
+    "category": "comparison"
+  },
+  {
+    "id": "post_2",
+    "title": "Base44 limitations - what I wish they would fix",
+    "body": "Love the concept but the generated code is hard to customize. Also hit API limits pretty quickly. Still better than starting from scratch though.",
+    "author": "user_2",
+    "subreddit": "nocode",
+    "score": 34,
+    "upvote_ratio": 0.884,
+    "num_comments": 8,
+    "created_utc": 1755952962.8825407,
+    "url": "https://reddit.com/r/nocode/post_2",
+    "platform_mentioned": [
+      "base44"
+    ],
+    "sentiment_score": 0.0,
+    "category": "discussion"
+  },
+  {
+    "id": "post_3",
+    "title": "Bolt.new is incredibly fast for prototyping",
+    "body": "Just discovered Bolt.new and wow, the speed is amazing. Generated a working app in minutes. UI could be better but for quick prototypes it's perfect.",
+    "author": "user_3",
+    "subreddit": "nocode",
+    "score": 92,
+    "upvote_ratio": 0.942,
+    "num_comments": 31,
+    "created_utc": 1755866562.8826241,
+    "url": "https://reddit.com/r/nocode/post_3",
+    "platform_mentioned": [
+      "bolt"
+    ],
+    "sentiment_score": 0.5882352941176471,
+    "category": "discussion"
+  },
+  {
+    "id": "post_4",
+    "title": "V0 by Vercel - the most polished AI code generator",
+    "body": "V0.dev has the best UI and the generated components are production-ready. More expensive than alternatives but worth it for serious projects.",
+    "author": "user_4",
+    "subreddit": "nocode",
+    "score": 67,
+    "upvote_ratio": 0.917,
+    "num_comments": 19,
+    "created_utc": 1755780162.8827069,
+    "url": "https://reddit.com/r/nocode/post_4",
+    "platform_mentioned": [
+      "v0"
+    ],
+    "sentiment_score": 0.0,
+    "category": "comparison"
+  },
+  {
+    "id": "post_5",
+    "title": "Lovable.dev review - decent but not game-changing",
+    "body": "Tried Lovable for a week. It's okay but nothing special. The AI sometimes generates buggy code and the templates feel limited.",
+    "author": "user_5",
+    "subreddit": "nocode",
+    "score": 23,
+    "upvote_ratio": 0.873,
+    "num_comments": 7,
+    "created_utc": 1755693762.8827853,
+    "url": "https://reddit.com/r/nocode/post_5",
+    "platform_mentioned": [
+      "lovable"
+    ],
+    "sentiment_score": -0.3333333333333333,
+    "category": "issue_report"
+  },
+  {
+    "id": "post_0",
+    "title": "Built my first SaaS with Base44 - surprisingly powerful!",
+    "body": "After trying several no-code tools, Base44 stands out. The AI generation is really smart and the database integration just works. Took me 2 hours to build what would have been weeks in React.",
+    "author": "user_0",
+    "subreddit": "nocode",
+    "score": 45,
+    "upvote_ratio": 0.895,
+    "num_comments": 12,
+    "created_utc": 1756125763.3831213,
+    "url": "https://reddit.com/r/nocode/post_0",
+    "platform_mentioned": [
+      "base44"
+    ],
+    "sentiment_score": 0.0,
+    "category": "showcase"
+  },
+  {
+    "id": "post_1",
+    "title": "Base44 vs other no-code platforms - my experience",
+    "body": "Tried Base44, Bolt.new, and V0. Base44 has the best database handling but Bolt is faster for simple apps. V0 feels more polished but less flexible.",
+    "author": "user_1",
+    "subreddit": "nocode",
+    "score": 78,
+    "upvote_ratio": 0.9279999999999999,
+    "num_comments": 23,
+    "created_utc": 1756039363.383329,
+    "url": "https://reddit.com/r/nocode/post_1",
+    "platform_mentioned": [
+      "base44",
+      "bolt",
+      "v0"
+    ],
+    "sentiment_score": 0.5882352941176471,
+    "category": "comparison"
+  },
+  {
+    "id": "post_0",
+    "title": "Built my first SaaS with Base44 - surprisingly powerful!",
+    "body": "After trying several no-code tools, Base44 stands out. The AI generation is really smart and the database integration just works. Took me 2 hours to build what would have been weeks in React.",
+    "author": "user_0",
+    "subreddit": "nocode",
+    "score": 45,
+    "upvote_ratio": 0.895,
+    "num_comments": 12,
+    "created_utc": 1756125763.8840816,
+    "url": "https://reddit.com/r/nocode/post_0",
+    "platform_mentioned": [
+      "base44"
+    ],
+    "sentiment_score": 0.0,
+    "category": "showcase"
+  },
+  {
+    "id": "post_1",
+    "title": "Base44 vs other no-code platforms - my experience",
+    "body": "Tried Base44, Bolt.new, and V0. Base44 has the best database handling but Bolt is faster for simple apps. V0 feels more polished but less flexible.",
+    "author": "user_1",
+    "subreddit": "nocode",
+    "score": 78,
+    "upvote_ratio": 0.9279999999999999,
+    "num_comments": 23,
+    "created_utc": 1756039363.8842738,
+    "url": "https://reddit.com/r/nocode/post_1",
+    "platform_mentioned": [
+      "base44",
+      "bolt",
+      "v0"
+    ],
+    "sentiment_score": 0.5882352941176471,
+    "category": "comparison"
+  }
+]
