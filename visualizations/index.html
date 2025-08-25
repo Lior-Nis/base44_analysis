@@ -1,86 +1,331 @@
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Base44 Ecosystem Analysis Dashboard</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                .header { text-align: center; margin-bottom: 30px; }
-                .chart-container { margin: 20px 0; }
-                .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
-                .stat-box { background: #f5f5f5; padding: 15px; border-radius: 8px; text-align: center; }
-                .stat-value { font-size: 2em; font-weight: bold; color: #007acc; }
-                .iframe-container { width: 100%; height: 600px; margin: 20px 0; }
-                iframe { width: 100%; height: 100%; border: none; }
-            </style>
-        </head>
-        <body>
-            <div class="header">
-                <h1>Base44 No-Code AI Ecosystem Analysis</h1>
-                <h2>Comprehensive Dashboard</h2>
-                <p>Analysis of 59 Base44 applications with machine learning taxonomy and quality metrics</p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-value">59</div>
-                    <div>Total Applications</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">98.3%</div>
-                    <div>TypeScript Adoption</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">63</div>
-                    <div>Avg Dependencies</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">3</div>
-                    <div>Main Categories</div>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Ecosystem Overview</h3>
-                <div class="iframe-container">
-                    <iframe src="ecosystem_overview.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Application Taxonomy</h3>
-                <div class="iframe-container">
-                    <iframe src="taxonomy_treemap.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Complexity vs Sophistication</h3>
-                <div class="iframe-container">
-                    <iframe src="complexity_scatter.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Feature Analysis</h3>
-                <div class="iframe-container">
-                    <iframe src="feature_analysis.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Topic Modeling Results</h3>
-                <div class="iframe-container">
-                    <iframe src="topic_distribution.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3>Metrics Correlation</h3>
-                <div class="iframe-container">
-                    <iframe src="correlation_heatmap.html"></iframe>
-                </div>
-            </div>
-        </body>
-        </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base44 Analysis Dashboard Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            pointer-events: none;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .dashboards-grid {
+            padding: 50px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .card-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .card-subtitle {
+            color: #6c757d;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .card-content {
+            padding: 25px 30px 35px;
+        }
+        
+        .dashboard-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .features-list li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9em;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .features-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .launch-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .launch-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .stats {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .dashboards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Base44 Analysis Suite</h1>
+            <p>Comprehensive analysis of the Base44 no-code AI ecosystem featuring advanced visualizations, machine learning insights, and statistical validation</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value">57</span>
+                    <span class="stat-label">Templates</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">4,500+</span>
+                    <span class="stat-label">Source Files</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">38</span>
+                    <span class="stat-label">ML Features</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">96%</span>
+                    <span class="stat-label">Prediction R²</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboards-grid">
+            <a href="ecosystem_overview.html" class="dashboard-link">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <span class="card-icon">🌐</span>
+                        <h3 class="card-title">Ecosystem Overview</h3>
+                        <p class="card-subtitle">Comprehensive analysis of all 57 Base44 templates</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li>Interactive complexity distributions</li>
+                            <li>Base44 integration analysis</li>
+                            <li>Technology adoption radar</li>
+                            <li>Architectural pattern insights</li>
+                            <li>Real-time filtering & exploration</li>
+                        </ul>
+                        <button class="launch-button">Explore Ecosystem</button>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="ml_insights.html" class="dashboard-link">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <span class="card-icon">🤖</span>
+                        <h3 class="card-title">ML Insights</h3>
+                        <p class="card-subtitle">Machine learning models & pattern discovery</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li>Complexity prediction models (R²=0.96)</li>
+                            <li>Automated category classification</li>
+                            <li>Pattern discovery clustering</li>
+                            <li>Feature importance analysis</li>
+                            <li>Predictive visualizations</li>
+                        </ul>
+                        <button class="launch-button">View ML Results</button>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="statistical_validation.html" class="dashboard-link">
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <span class="card-icon">📊</span>
+                        <h3 class="card-title">Statistical Validation</h3>
+                        <p class="card-subtitle">Rigorous statistical testing & validation</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li>83% significance rate across tests</li>
+                            <li>Correlation analysis & validation</li>
+                            <li>Cronbach's alpha reliability (α=0.99)</li>
+                            <li>Non-parametric statistical tests</li>
+                            <li>Academic-grade rigor</li>
+                        </ul>
+                        <button class="launch-button">Review Validation</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>🎓 Graduate-Level Data Mining Project | Base44 Ecosystem Analysis | Generated with Advanced Analytics Pipeline</p>
+        </div>
+    </div>
+</body>
+</html>

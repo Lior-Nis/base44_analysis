@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base44 ML Analysis Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .ml-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .ml-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .ml-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .ml-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .feature-importance {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .feature-bar {
+            height: 20px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            margin-left: 10px;
+            flex: 1;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🤖 Machine Learning Analysis</h1>
+            <p>Predictive Models & Pattern Discovery for Base44 Ecosystem</p>
+        </div>
+        
+        <div class="ml-metrics">
+            <div class="ml-card">
+                <div class="ml-value">57</div>
+                <div class="ml-label">Templates Analyzed</div>
+            </div>
+            
+            <div class="ml-card">
+                <div class="ml-value">38</div>
+                <div class="ml-label">Features Extracted</div>
+            </div>
+            
+            <div class="ml-card">
+                <div class="ml-value">0.959</div>
+                <div class="ml-label">Prediction R²</div>
+            </div>
+            
+            <div class="ml-card">
+                <div class="ml-value">26.32%</div>
+                <div class="ml-label">Classification Accuracy</div>
+            </div>
+            
+            <div class="ml-card">
+                <div class="ml-value">4</div>
+                <div class="ml-label">Patterns Discovered</div>
+            </div>
+        </div>
+        
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Complexity Prediction vs Actual</h3>
+                <div id="predictionScatter"></div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Category Classification</h3>
+                <div id="categoryPie"></div>
+            </div>
+            
+            <div class="chart-container full-width">
+                <h3>Pattern Discovery Clusters</h3>
+                <div id="clusterVisualization"></div>
+            </div>
+        </div>
+        
+        <div class="feature-importance">
+            <h3>🎯 Top Predictive Features</h3>
+            <ul class="feature-list">
+                
+                <li class="feature-item">
+                    <span>Jsx Attributes Count</span>
+                    <div class="feature-bar" style="width: 100.0%; opacity: 1.0"></div>
+                    <span>1.521</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Jsx Conditional Rendering</span>
+                    <div class="feature-bar" style="width: 97.4878755166395%; opacity: 0.9924636265499185"></div>
+                    <span>1.483</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Inline Styles</span>
+                    <div class="feature-bar" style="width: 96.0163965892997%; opacity: 0.9880491897678991"></div>
+                    <span>1.461</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Jsx Elements Count</span>
+                    <div class="feature-bar" style="width: 95.47214339824785%; opacity: 0.9864164301947436"></div>
+                    <span>1.452</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Css Classes</span>
+                    <div class="feature-bar" style="width: 90.03145561798456%; opacity: 0.9700943668539537"></div>
+                    <span>1.370</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Jsx Lines</span>
+                    <div class="feature-bar" style="width: 89.790575379456%; opacity: 0.969371726138368"></div>
+                    <span>1.366</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Cyclomatic Complexity</span>
+                    <div class="feature-bar" style="width: 88.19778559572804%; opacity: 0.964593356787184"></div>
+                    <span>1.342</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Console Logs</span>
+                    <div class="feature-bar" style="width: 76.80919830021395%; opacity: 0.9304275949006418"></div>
+                    <span>1.168</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Arrow Functions Ratio</span>
+                    <div class="feature-bar" style="width: 71.40815582731335%; opacity: 0.91422446748194"></div>
+                    <span>1.086</span>
+                </li>
+                
+                <li class="feature-item">
+                    <span>Code Lines</span>
+                    <div class="feature-bar" style="width: 70.3684271388751%; opacity: 0.9111052814166253"></div>
+                    <span>1.070</span>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const mlData = {"analysis_metadata": {"n_templates": 57, "n_features": 38, "feature_names": ["total_lines", "code_lines", "jsx_lines", "comment_ratio", "cyclomatic_complexity", "nesting_depth", "jsx_elements_count", "jsx_conditional_rendering", "hooks_count", "state_variables", "effect_hooks", "custom_hooks_count", "total_imports", "base44_imports_ratio", "third_party_imports_ratio", "local_imports_ratio", "custom_components_count", "html_elements_count", "jsx_attributes_count", "api_calls", "base44_api_calls", "fetch_calls", "console_logs", "todo_comments", "try_catch_blocks", "magic_numbers", "function_count", "arrow_functions_ratio", "async_functions", "object_literals", "array_literals", "destructuring_patterns", "memo_usage", "usecallback_usage", "usememo_usage", "inline_styles", "css_classes", "styled_components"]}, "complexity_prediction": {"r_squared": 0.9594401192758523, "mse": 0.5136964713446931, "feature_importance": [[18, 1.5212261177694204], [7, 1.4830110240176604], [35, 1.460626502257494], [6, 1.4523471805684198], [36, 1.3695820170687654], [2, 1.3659176839677236], [4, 1.3416877497764905], [22, 1.1684415853921601], [27, 1.086279516662577], [1, 1.070462892300113], [0, 0.9895824642189527], [30, 0.8368855359434324], [12, 0.8145944898119528], [15, 0.7350053739877107], [29, 0.7259834460423701], [14, 0.7257401260123784], [8, 0.6703795046793735], [26, 0.6626459532637937], [21, 0.6157851253301453], [31, 0.6151339074758505], [19, 0.6050517269657879], [28, 0.602021057221339], [13, 0.5733125594313823], [3, 0.5723091165203485], [9, 0.5206997986259956], [10, 0.5187697068480792], [23, 0.28753126784658917], [20, 0.10464678329050708], [33, 0.08447686281551003], [37, 0.07296917760971769], [34, 0.0703357180749432], [16, 0.059633851499944324], [5, 0.03640249128462719], [24, 0.03401240245963505], [25, 0.02381522092620618], [17, 0.017541151388037773], [32, 0.014700723327495321], [11, 0.0019024019275378778]]}, "category_classification": {"accuracy": 0.2631578947368421, "categories": ["Education", "General", "Crypto/Finance", "Health/Fitness", "AI/ML", "Productivity"], "category_distribution": {"General": 38, "AI/ML": 10, "Crypto/Finance": 2, "Education": 2, "Health/Fitness": 2, "Productivity": 3}}, "pattern_discovery": {"cluster_assignments": [1, 4, 4, 4, 2, 4, 4, 4, 2, 2, 4, 4, 2, 4, 0, 2, 0, 2, 4, 2, 2, 4, 4, 2, 2, 4, 0, 4, 0, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 4, 2, 4, 1, 4, 2, 4, 2, 2, 4, 4, 4, 2, 4, 4, 4], "cluster_characteristics": {"0": {"total_lines": {"mean": 0.5646982294532839, "median": 0.5172269410216533, "std": 0.3287386070368636}, "code_lines": {"mean": 0.5646982294532839, "median": 0.5172269410216532, "std": 0.3287386070368636}, "jsx_lines": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "comment_ratio": {"mean": 0.5, "median": 0.5, "std": 0.0}, "cyclomatic_complexity": {"mean": 0.4274830812792015, "median": 0.3098894540507321, "std": 0.39713641249563525}, "nesting_depth": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_elements_count": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "jsx_conditional_rendering": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "hooks_count": {"mean": 0.6357142857142857, "median": 0.7122448979591837, "std": 0.24680380862138418}, "state_variables": {"mean": 0.6066919191919192, "median": 0.7007575757575757, "std": 0.21502121178668032}, "effect_hooks": {"mean": 0.5853658536585366, "median": 0.6585365853658536, "std": 0.20933972665989808}, "custom_hooks_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "total_imports": {"mean": 0.7852112676056338, "median": 0.852112676056338, "std": 0.18087307638587552}, "base44_imports_ratio": {"mean": 0.12373845084972647, "median": 0.07583517634734022, "std": 0.12078128049058627}, "third_party_imports_ratio": {"mean": 0.12373845084972647, "median": 0.07583517634734022, "std": 0.12078128049058627}, "local_imports_ratio": {"mean": 0.12373845084972647, "median": 0.07583517634734022, "std": 0.12078128049058627}, "custom_components_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "html_elements_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_attributes_count": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "api_calls": {"mean": 0.5706521739130435, "median": 0.5978260869565217, "std": 0.40334728946259724}, "base44_api_calls": {"mean": 0.33606557377049184, "median": 0.35655737704918034, "std": 0.20703821213631296}, "fetch_calls": {"mean": 0.5706521739130435, "median": 0.5978260869565217, "std": 0.40334728946259724}, "console_logs": {"mean": 0.5039370078740157, "median": 0.42322834645669294, "std": 0.3517109334872813}, "todo_comments": {"mean": 0.25, "median": 0.0, "std": 0.5}, "try_catch_blocks": {"mean": 0.0, "median": 0.0, "std": 0.0}, "magic_numbers": {"mean": 0.0, "median": 0.0, "std": 0.0}, "function_count": {"mean": 0.6612903225806451, "median": 0.7016129032258065, "std": 0.13494516557001218}, "arrow_functions_ratio": {"mean": 0.75, "median": 1.0, "std": 0.5}, "async_functions": {"mean": 0.5706521739130435, "median": 0.5978260869565217, "std": 0.40334728946259724}, "object_literals": {"mean": 0.7852112676056338, "median": 0.852112676056338, "std": 0.18087307638587552}, "array_literals": {"mean": 0.7852112676056338, "median": 0.852112676056338, "std": 0.18087307638587552}, "destructuring_patterns": {"mean": 0.6357142857142857, "median": 0.7122448979591837, "std": 0.24680380862138418}, "memo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usecallback_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usememo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "inline_styles": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "css_classes": {"mean": 0.8116757517144364, "median": 0.8226217689467206, "std": 0.1651881330639592}, "styled_components": {"mean": 0.0, "median": 0.0, "std": 0.0}}, "1": {"total_lines": {"mean": 0.5462674961119751, "median": 0.5462674961119751, "std": 0.046991005736227665}, "code_lines": {"mean": 0.5462674961119751, "median": 0.5462674961119751, "std": 0.046991005736227665}, "jsx_lines": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.0948072658088171}, "comment_ratio": {"mean": 0.5, "median": 0.5, "std": 0.0}, "cyclomatic_complexity": {"mean": 0.39980582443431384, "median": 0.39980582443431384, "std": 0.1273605307544906}, "nesting_depth": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_elements_count": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.0948072658088171}, "jsx_conditional_rendering": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.09480726580881702}, "hooks_count": {"mean": 0.8693877551020408, "median": 0.8693877551020408, "std": 0.18471360814669}, "state_variables": {"mean": 0.8434343434343434, "median": 0.8434343434343434, "std": 0.22141727491699975}, "effect_hooks": {"mean": 0.8597560975609756, "median": 0.8597560975609756, "std": 0.1983348288693975}, "custom_hooks_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "total_imports": {"mean": 0.9366197183098591, "median": 0.9366197183098591, "std": 0.08963325395322437}, "base44_imports_ratio": {"mean": 0.031943661971831, "median": 0.031943661971831, "std": 0.045175159992425086}, "third_party_imports_ratio": {"mean": 0.031943661971831, "median": 0.031943661971831, "std": 0.045175159992425086}, "local_imports_ratio": {"mean": 0.031943661971831, "median": 0.031943661971831, "std": 0.045175159992425086}, "custom_components_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "html_elements_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_attributes_count": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.0948072658088171}, "api_calls": {"mean": 0.33695652173913043, "median": 0.33695652173913043, "std": 0.07685943273766824}, "base44_api_calls": {"mean": 0.7786885245901639, "median": 0.7786885245901639, "std": 0.31298169003338994}, "fetch_calls": {"mean": 0.33695652173913043, "median": 0.33695652173913043, "std": 0.07685943273766824}, "console_logs": {"mean": 0.36811023622047245, "median": 0.36811023622047245, "std": 0.10857151364675337}, "todo_comments": {"mean": 0.07142857142857142, "median": 0.07142857142857142, "std": 0.10101525445522107}, "try_catch_blocks": {"mean": 0.0, "median": 0.0, "std": 0.0}, "magic_numbers": {"mean": 0.0, "median": 0.0, "std": 0.0}, "function_count": {"mean": 0.9596774193548387, "median": 0.9596774193548387, "std": 0.05702474041826999}, "arrow_functions_ratio": {"mean": 1.0, "median": 1.0, "std": 0.0}, "async_functions": {"mean": 0.3369565217391305, "median": 0.3369565217391305, "std": 0.07685943273766824}, "object_literals": {"mean": 0.9366197183098591, "median": 0.9366197183098591, "std": 0.08963325395322437}, "array_literals": {"mean": 0.9366197183098591, "median": 0.9366197183098591, "std": 0.08963325395322437}, "destructuring_patterns": {"mean": 0.8693877551020408, "median": 0.8693877551020408, "std": 0.18471360814669}, "memo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usecallback_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usememo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "inline_styles": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.09480726580881702}, "css_classes": {"mean": 0.6107350096711799, "median": 0.6107350096711799, "std": 0.09480726580881702}, "styled_components": {"mean": 0.0, "median": 0.0, "std": 0.0}}, "2": {"total_lines": {"mean": 0.12191450332974439, "median": 0.10805718387366911, "std": 0.0640818768722795}, "code_lines": {"mean": 0.12191450332974438, "median": 0.10805718387366908, "std": 0.06408187687227948}, "jsx_lines": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.0704310094055394}, "comment_ratio": {"mean": 0.5277777777777778, "median": 0.5, "std": 0.11785113019775792}, "cyclomatic_complexity": {"mean": 0.08567006346618028, "median": 0.07346628267130359, "std": 0.0646165676622776}, "nesting_depth": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_elements_count": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.0704310094055394}, "jsx_conditional_rendering": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.07043100940553941}, "hooks_count": {"mean": 0.14523809523809525, "median": 0.1346938775510204, "std": 0.07219533571673978}, "state_variables": {"mean": 0.13692480359147025, "median": 0.12878787878787878, "std": 0.07517879300866902}, "effect_hooks": {"mean": 0.14634146341463414, "median": 0.1402439024390244, "std": 0.06847689850089941}, "custom_hooks_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "total_imports": {"mean": 0.3082942097026604, "median": 0.2535211267605634, "std": 0.15207039279213472}, "base44_imports_ratio": {"mean": 0.5319442515756149, "median": 0.5805946791862284, "std": 0.1557048846471054}, "third_party_imports_ratio": {"mean": 0.5319442515756149, "median": 0.5805946791862284, "std": 0.1557048846471054}, "local_imports_ratio": {"mean": 0.5319442515756149, "median": 0.5805946791862284, "std": 0.1557048846471054}, "custom_components_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "html_elements_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_attributes_count": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.0704310094055394}, "api_calls": {"mean": 0.11473429951690821, "median": 0.09782608695652173, "std": 0.06449107730802268}, "base44_api_calls": {"mean": 0.09107468123861566, "median": 0.08196721311475409, "std": 0.06699808542368497}, "fetch_calls": {"mean": 0.11473429951690821, "median": 0.09782608695652173, "std": 0.06449107730802268}, "console_logs": {"mean": 0.08289588801399825, "median": 0.07086614173228348, "std": 0.057600935294894344}, "todo_comments": {"mean": 0.0, "median": 0.0, "std": 0.0}, "try_catch_blocks": {"mean": 0.0, "median": 0.0, "std": 0.0}, "magic_numbers": {"mean": 0.0, "median": 0.0, "std": 0.0}, "function_count": {"mean": 0.23655913978494625, "median": 0.20967741935483872, "std": 0.10349821740641095}, "arrow_functions_ratio": {"mean": 1.0, "median": 1.0, "std": 0.0}, "async_functions": {"mean": 0.11473429951690821, "median": 0.09782608695652173, "std": 0.06449107730802268}, "object_literals": {"mean": 0.3082942097026604, "median": 0.2535211267605634, "std": 0.15207039279213472}, "array_literals": {"mean": 0.3082942097026604, "median": 0.2535211267605634, "std": 0.15207039279213472}, "destructuring_patterns": {"mean": 0.14523809523809525, "median": 0.1346938775510204, "std": 0.07219533571673978}, "memo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usecallback_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usememo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "inline_styles": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.07043100940553941}, "css_classes": {"mean": 0.1402760682257781, "median": 0.11310884473360294, "std": 0.07043100940553941}, "styled_components": {"mean": 0.0, "median": 0.0, "std": 0.0}}, "4": {"total_lines": {"mean": 0.036570091391242246, "median": 0.03107429118315588, "std": 0.029410321838134832}, "code_lines": {"mean": 0.036570091391242246, "median": 0.03107429118315587, "std": 0.029410321838134832}, "jsx_lines": {"mean": 0.03987829765920148, "median": 0.03244241251978196, "std": 0.03200283630705268}, "comment_ratio": {"mean": 0.5151515151515151, "median": 0.5, "std": 0.19704252732787808}, "cyclomatic_complexity": {"mean": 0.04049543477064255, "median": 0.02550308826459453, "std": 0.040807985801072734}, "nesting_depth": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_elements_count": {"mean": 0.03987829765920148, "median": 0.03244241251978196, "std": 0.03200283630705268}, "jsx_conditional_rendering": {"mean": 0.03987829765920148, "median": 0.032442412519781964, "std": 0.03200283630705268}, "hooks_count": {"mean": 0.045330859616573904, "median": 0.04081632653061224, "std": 0.04070698868090209}, "state_variables": {"mean": 0.04308233853688399, "median": 0.04040404040404041, "std": 0.039334098239510375}, "effect_hooks": {"mean": 0.0450849963045085, "median": 0.036585365853658534, "std": 0.03874289294135958}, "custom_hooks_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "total_imports": {"mean": 0.06914212548015365, "median": 0.056338028169014086, "std": 0.056816152963722895}, "base44_imports_ratio": {"mean": 0.8695510287596931, "median": 0.8873239436619719, "std": 0.10397523081227575}, "third_party_imports_ratio": {"mean": 0.8695510287596931, "median": 0.8873239436619719, "std": 0.10397523081227575}, "local_imports_ratio": {"mean": 0.8695510287596931, "median": 0.8873239436619719, "std": 0.10397523081227575}, "custom_components_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "html_elements_count": {"mean": 0.0, "median": 0.0, "std": 0.0}, "jsx_attributes_count": {"mean": 0.03987829765920148, "median": 0.03244241251978196, "std": 0.03200283630705268}, "api_calls": {"mean": 0.06258234519104085, "median": 0.043478260869565216, "std": 0.04058206279647283}, "base44_api_calls": {"mean": 0.02409339294585196, "median": 0.01639344262295082, "std": 0.026237463088304474}, "fetch_calls": {"mean": 0.06258234519104085, "median": 0.043478260869565216, "std": 0.04058206279647283}, "console_logs": {"mean": 0.024695776664280602, "median": 0.011811023622047244, "std": 0.03673874867244069}, "todo_comments": {"mean": 0.008658008658008658, "median": 0.0, "std": 0.04973647313019938}, "try_catch_blocks": {"mean": 0.0, "median": 0.0, "std": 0.0}, "magic_numbers": {"mean": 0.0, "median": 0.0, "std": 0.0}, "function_count": {"mean": 0.0689149560117302, "median": 0.06451612903225806, "std": 0.049429748797853515}, "arrow_functions_ratio": {"mean": 0.9090909090909091, "median": 1.0, "std": 0.2919371040605711}, "async_functions": {"mean": 0.06258234519104083, "median": 0.04347826086956521, "std": 0.040582062796472834}, "object_literals": {"mean": 0.06914212548015365, "median": 0.056338028169014086, "std": 0.056816152963722895}, "array_literals": {"mean": 0.06914212548015365, "median": 0.056338028169014086, "std": 0.056816152963722895}, "destructuring_patterns": {"mean": 0.045330859616573904, "median": 0.04081632653061224, "std": 0.04070698868090209}, "memo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usecallback_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "usememo_usage": {"mean": 0.0, "median": 0.0, "std": 0.0}, "inline_styles": {"mean": 0.03987829765920148, "median": 0.032442412519781964, "std": 0.03200283630705268}, "css_classes": {"mean": 0.03987829765920148, "median": 0.032442412519781964, "std": 0.03200283630705268}, "styled_components": {"mean": 0.0, "median": 0.0, "std": 0.0}}}, "cluster_sizes": {"1": 2, "4": 33, "2": 18, "0": 4}}, "template_predictions": [{"template_name": "back2-study-copy-7373a307", "predicted_complexity": 15.105844885822027, "predicted_category": "General", "pattern_cluster": 1, "actual_complexity": 12.955223880597016}, {"template_name": "brow-studio-pro-copy-f5d6940a", "predicted_complexity": 5.494492661770305, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.426760563380282}, {"template_name": "burger-builder-copy-71e3af33", "predicted_complexity": 5.8614586370631585, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.079452054794521}, {"template_name": "card-connect-copy-5b9fdd49", "predicted_complexity": 7.450404484208864, "predicted_category": "Education", "pattern_cluster": 4, "actual_complexity": 8.407042253521126}, {"template_name": "career-path-ai-copy-8534347a", "predicted_complexity": 6.083084018265356, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 5.912345679012346}, {"template_name": "champions-hub-copy-ae9098aa", "predicted_complexity": 5.421944036409682, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 4.987301587301587}, {"template_name": "clay-math-solver-copy-fb059e6d", "predicted_complexity": 5.3178217002813195, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 4.857352941176471}, {"template_name": "clever-cub-copy-fb05a187", "predicted_complexity": 5.5972218705511345, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.298461538461538}, {"template_name": "code-master-copy-fb12aa6f", "predicted_complexity": 6.679983359079645, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 6.630379746835443}, {"template_name": "company-hub-copy-cd6677eb", "predicted_complexity": 7.951582328267558, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 8.389473684210527}, {"template_name": "crypto-chart-ai-copy-2172117f", "predicted_complexity": 6.026695617519948, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.243478260869566}, {"template_name": "crypto-learn-academy-copy-3976732a", "predicted_complexity": 5.490579802728802, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 5.279365079365079}, {"template_name": "crypto-pulse-ai-copy-fc6fd822", "predicted_complexity": 7.5351694301317345, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 8.706172839506173}, {"template_name": "crypto-vault-copy-99a3b24e", "predicted_complexity": 5.518416205884656, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 5.112698412698413}, {"template_name": "dashiq-copy-e7b889c4", "predicted_complexity": 20.565029765442226, "predicted_category": "General", "pattern_cluster": 0, "actual_complexity": 23.16328125}, {"template_name": "digma-copy-a2c40696", "predicted_complexity": 6.934645817005221, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 8.207792207792208}, {"template_name": "doce-encanto-copy-0b7cd394", "predicted_complexity": 17.531323277651016, "predicted_category": "General", "pattern_cluster": 0, "actual_complexity": 16.37857142857143}, {"template_name": "eco-hustle-copy-71a2b71f", "predicted_complexity": 7.185636809971036, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 7.014444444444445}, {"template_name": "eco-vision-copy-06c3477d", "predicted_complexity": 5.965645815648301, "predicted_category": "Education", "pattern_cluster": 4, "actual_complexity": 5.8373333333333335}, {"template_name": "edu-connect-ez-ai-copy-94cb4aac", "predicted_complexity": 6.362817600642514, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 6.348051948051948}, {"template_name": "edu-market-copy-5681508b", "predicted_complexity": 8.513788469424004, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 8.237234042553192}, {"template_name": "fit-craft-copy-757e06bf", "predicted_complexity": 5.428750064893921, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.380597014925373}, {"template_name": "fit-pro-gym-app-copy-aa5e2d4d", "predicted_complexity": 6.433959718593261, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.889041095890411}, {"template_name": "flow-schedule-copy-fc6fdb45", "predicted_complexity": 6.299583564626526, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 6.078205128205128}, {"template_name": "flowtask-copy-ee8f09b2", "predicted_complexity": 6.989999772424887, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 7.145783132530121}, {"template_name": "form-forge-copy-ee8f0590", "predicted_complexity": 7.074541223104811, "predicted_category": "Education", "pattern_cluster": 4, "actual_complexity": 7.501388888888889}, {"template_name": "geck-inspect-copy-e7b888fc", "predicted_complexity": 14.966769937946001, "predicted_category": "General", "pattern_cluster": 0, "actual_complexity": 13.5099173553719}, {"template_name": "heartbeat-copy-71e3b1e1", "predicted_complexity": 4.7582728131494285, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.868181818181818}, {"template_name": "home-scope-ai-copy-a00efdbd", "predicted_complexity": 15.545097522918732, "predicted_category": "AI/ML", "pattern_cluster": 0, "actual_complexity": 17.016000000000002}, {"template_name": "insight-tube-copy-06c348ed", "predicted_complexity": 5.497360117609993, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.056923076923077}, {"template_name": "invoice-master-ai-copy-642d89b0", "predicted_complexity": 5.935584504504521, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.950684931506849}, {"template_name": "job-connect-copy-bc41774c", "predicted_complexity": 6.858733442587235, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 6.853246753246753}, {"template_name": "km-design-factory-copy-aa891ce8", "predicted_complexity": 6.666217616386242, "predicted_category": "Education", "pattern_cluster": 4, "actual_complexity": 7.9452054794520555}, {"template_name": "makuta-pulse-copy-e7b88548", "predicted_complexity": 5.925200058505831, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.95}, {"template_name": "math-quest-copy-d16bd23c", "predicted_complexity": 6.55244859556834, "predicted_category": "Education", "pattern_cluster": 4, "actual_complexity": 6.642857142857143}, {"template_name": "message-craft-ai-copy-ee8f08eb", "predicted_complexity": 5.723147171466326, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.344776119402985}, {"template_name": "moda-studio-copy-a7b8dd75", "predicted_complexity": 5.974811826119331, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.1046875}, {"template_name": "newsletter-ai-copy-1cc8a85d", "predicted_complexity": 6.51878553655847, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.064383561643836}, {"template_name": "nexus-agents-copy-cd667922", "predicted_complexity": 5.332516934475317, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 4.982539682539683}, {"template_name": "nova-build-ai-copy-copy-06f41e8b", "predicted_complexity": 6.819115583567346, "predicted_category": "AI/ML", "pattern_cluster": 2, "actual_complexity": 6.403614457831326}, {"template_name": "oicl-office-expenses-tracker-copy-b35be47b", "predicted_complexity": 5.918987167930335, "predicted_category": "Health/Fitness", "pattern_cluster": 2, "actual_complexity": 5.585714285714286}, {"template_name": "orbital-copy-a6ae2928", "predicted_complexity": 5.301737662186124, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 4.7365079365079366}, {"template_name": "osteo-scope-copy-ee8f08c4", "predicted_complexity": 7.890203595240445, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 7.5843750000000005}, {"template_name": "planning-poker-copy-7e1f543d", "predicted_complexity": 5.9362274114764055, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 5.823943661971831}, {"template_name": "predict-win-77-copy-859a15d4", "predicted_complexity": 16.828457762396145, "predicted_category": "General", "pattern_cluster": 1, "actual_complexity": 16.6056}, {"template_name": "promptorium-copy-71e3b0af", "predicted_complexity": 5.917641475662268, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.633333333333334}, {"template_name": "pup-pack-copy-1e0a0b09", "predicted_complexity": 7.116369579917434, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 7.185714285714286}, {"template_name": "remo-copy-a7b8e7fc", "predicted_complexity": 5.348195140348757, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 4.731746031746032}, {"template_name": "serenity-copy-7c4595b3", "predicted_complexity": 7.246995303869643, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 7.214457831325301}, {"template_name": "space-flow-copy-06c345c2", "predicted_complexity": 10.743450463630925, "predicted_category": "Productivity", "pattern_cluster": 2, "actual_complexity": 11.036283185840707}, {"template_name": "star-ai-copy-8eec7682", "predicted_complexity": 4.318187983201145, "predicted_category": "AI/ML", "pattern_cluster": 4, "actual_complexity": 5.015068493150685}, {"template_name": "task-flow-copy-ae9098a3", "predicted_complexity": 6.387965418567511, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 6.328169014084508}, {"template_name": "teser-copy-71a2bbfc", "predicted_complexity": 4.481515684353089, "predicted_category": "AI/ML", "pattern_cluster": 4, "actual_complexity": 5.056716417910448}, {"template_name": "tuesdaycom-copy-e7c7312d", "predicted_complexity": 9.097141625779766, "predicted_category": "Education", "pattern_cluster": 2, "actual_complexity": 9.116981132075471}, {"template_name": "veo3-json-prompt-generator-copy-da34469a", "predicted_complexity": 5.304671443472828, "predicted_category": "Health/Fitness", "pattern_cluster": 4, "actual_complexity": 4.665625}, {"template_name": "vertex-insights-copy-0b7cd047", "predicted_complexity": 5.451856289123867, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 5.1761904761904765}, {"template_name": "vertex-insights-copy-e7b8854c", "predicted_complexity": 5.451856289123867, "predicted_category": "Crypto/Finance", "pattern_cluster": 4, "actual_complexity": 5.1761904761904765}]};
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePredictionScatter();
+            initializeCategoryPie();
+            initializeClusterVisualization();
+        });
+        
+        function initializePredictionScatter() {
+            const predictions = mlData.template_predictions || [];
+            
+            const trace = {
+                x: predictions.map(p => p.actual_complexity),
+                y: predictions.map(p => p.predicted_complexity),
+                mode: 'markers',
+                type: 'scatter',
+                text: predictions.map(p => p.template_name.replace('-copy-', '').substring(0, 20)),
+                marker: {
+                    color: 'rgba(102, 126, 234, 0.7)',
+                    size: 8,
+                    line: { color: 'white', width: 1 }
+                },
+                hovertemplate: '<b>%{text}</b><br>' +
+                              'Actual: %{x:.2f}<br>' +
+                              'Predicted: %{y:.2f}<br>' +
+                              '<extra></extra>'
+            };
+            
+            // Add perfect prediction line
+            const maxVal = Math.max(...predictions.map(p => Math.max(p.actual_complexity, p.predicted_complexity)));
+            const perfectLine = {
+                x: [0, maxVal],
+                y: [0, maxVal],
+                mode: 'lines',
+                line: { color: 'red', dash: 'dash' },
+                name: 'Perfect Prediction',
+                showlegend: false
+            };
+            
+            const layout = {
+                xaxis: { title: 'Actual Complexity' },
+                yaxis: { title: 'Predicted Complexity' },
+                showlegend: false,
+                margin: { t: 20, r: 20, b: 40, l: 40 }
+            };
+            
+            Plotly.newPlot('predictionScatter', [trace, perfectLine], layout, {responsive: true});
+        }
+        
+        function initializeCategoryPie() {
+            const categories = mlData.category_classification?.category_distribution || {};
+            
+            const trace = {
+                values: Object.values(categories),
+                labels: Object.keys(categories),
+                type: 'pie',
+                hole: 0.4,
+                marker: {
+                    colors: ['#4267B2', '#42B883', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4']
+                },
+                textinfo: 'label+percent',
+                hovertemplate: '<b>%{label}</b><br>' +
+                              'Count: %{value}<br>' +
+                              'Percentage: %{percent}<br>' +
+                              '<extra></extra>'
+            };
+            
+            const layout = {
+                showlegend: true,
+                legend: { orientation: 'h', y: -0.1 },
+                margin: { t: 20, r: 20, b: 60, l: 20 }
+            };
+            
+            Plotly.newPlot('categoryPie', [trace], layout, {responsive: true});
+        }
+        
+        function initializeClusterVisualization() {
+            const clusterSizes = mlData.pattern_discovery?.cluster_sizes || {};
+            const clusters = Object.keys(clusterSizes).map(k => parseInt(k));
+            const sizes = Object.values(clusterSizes);
+            
+            const trace = {
+                x: clusters,
+                y: sizes,
+                type: 'bar',
+                marker: {
+                    color: clusters.map((_, i) => ['#667eea', '#42B883', '#FF6B6B', '#4ECDC4', '#45B7D1'][i % 5]),
+                    line: { color: 'white', width: 1 }
+                },
+                hovertemplate: 'Cluster %{x}<br>Size: %{y}<extra></extra>'
+            };
+            
+            const layout = {
+                xaxis: { title: 'Cluster ID' },
+                yaxis: { title: 'Number of Templates' },
+                showlegend: false,
+                margin: { t: 20, r: 20, b: 40, l: 40 }
+            };
+            
+            Plotly.newPlot('clusterVisualization', [trace], layout, {responsive: true});
+        }
+    </script>
+</body>
+</html>
